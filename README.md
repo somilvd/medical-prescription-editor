@@ -232,7 +232,7 @@ medical-prescription-editor/
 
 ---
 
-# 🎯 Uso
+# Uso
 
 ## 1. Introducir datos
 
@@ -309,4 +309,4 @@ MIT License
 
 Desarrollado por:
 
-**somilvd**
+**http://somilvd.github.io/**
