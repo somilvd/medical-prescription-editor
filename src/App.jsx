@@ -331,13 +331,17 @@ export default function App() {
   // PRINT
   // =========================
   const print = () => {
+    if (!validateForm()) return;
 
-    if (!validateForm()) {
-      return;
-    }
-
+    document.body.classList.add("print-mode");
     window.print();
   };
+
+  React.useEffect(() => {
+    const after = () => document.body.classList.remove("print-mode");
+    window.addEventListener("afterprint", after);
+    return () => window.removeEventListener("afterprint", after);
+  }, []);
 
   return (
     <div className="app">

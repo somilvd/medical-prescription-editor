@@ -50,7 +50,7 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
 
-  box-shadow: 0 0 20px rgba(0,0,0,0.05);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
 }
 
 .panel h1 {
@@ -90,7 +90,7 @@ body {
 
 .panel input:focus {
   border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
 /* =========================
@@ -172,7 +172,7 @@ body {
 
   background: white;
 
-  box-shadow: 0 0 30px rgba(0,0,0,0.12);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.12);
 }
 
 .bg {
@@ -225,21 +225,47 @@ body {
 
 @media print {
 
-  body {
-    background: white;
+  /* oculta todo */
+  body * {
+    visibility: hidden;
   }
 
-  .no-print {
+  /* muestra SOLO los campos */
+  .field,
+  .field * {
+    visibility: visible;
+  }
+
+  /* posicionamiento en hoja A4 */
+  .paper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 210mm;
+    height: 297mm;
+    box-shadow: none !important;
+    background: white !important;
+  }
+
+  /* IMPORTANTE: ocultar plantilla */
+  .bg {
     display: none !important;
   }
 
-  .paper-wrapper {
-    padding: 0;
-    overflow: visible;
+  /* texto limpio */
+  .field {
+    position: absolute;
+    background: transparent !important;
+    border: none !important;
   }
 
-  .paper {
-    width: 210mm;
-    box-shadow: none;
+  .field-text {
+    color: black !important;
+    font-weight: 500;
+  }
+
+  /* ocultar panel */
+  .panel {
+    display: none !important;
   }
 }
