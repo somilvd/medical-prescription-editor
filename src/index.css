@@ -14,115 +14,218 @@
   min-height: 100vh;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f1f5f9;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+.app {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
 /* =========================
    PANEL IZQUIERDO
 ========================= */
+
 .panel {
-  width: 320px;
+  width: 360px;
+  min-width: 360px;
+  height: 100vh;
+
   background: white;
-  padding: 15px;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+
+  border-right: 1px solid #dbe3ea;
+
+  padding: 20px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  box-shadow: 0 0 20px rgba(0,0,0,0.05);
 }
 
 .panel h1 {
-  font-size: 18px;
-  margin-bottom: 10px;
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: #0f172a;
+}
+
+.panel div {
+  margin-bottom: 14px;
 }
 
 .panel label {
-  font-size: 12px;
-  font-weight: bold;
   display: block;
-  margin-top: 6px;
+  margin-bottom: 6px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  color: #334155;
 }
 
 .panel input {
   width: 100%;
-  margin-bottom: 6px;
-  padding: 6px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+
+  padding: 10px 12px;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition: 0.2s;
 }
+
+.panel input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+}
+
+/* =========================
+   BOTONES
+========================= */
 
 .panel button {
   width: 100%;
+
+  padding: 12px;
+
   margin-top: 10px;
-  padding: 10px;
-  background: black;
-  color: white;
+
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
+
+  background: #000000;
+  color: white;
+
+  font-size: 15px;
+  font-weight: bold;
+
   cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.panel button:hover {
+  background: #f30000;
 }
 
 /* =========================
-   EDITOR DE TAMAÑO
+   AJUSTE TAMAÑO
 ========================= */
+
 .size-box {
-  margin-top: 10px;
-  padding: 10px;
-  border-top: 1px solid #ddd;
+  margin-top: 20px;
+
+  padding: 15px;
+
+  border-radius: 12px;
+
+  background: #f8fafc;
+
+  border: 1px solid #dbe3ea;
 }
 
-.size-box input {
-  width: 100%;
-  padding: 6px;
-  margin-top: 5px;
+.size-box h3 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #0f172a;
 }
 
 /* =========================
-   A4 PAPER
+   ZONA PAPEL
 ========================= */
+
 .paper-wrapper {
   flex: 1;
+
   display: flex;
   justify-content: center;
   align-items: flex-start;
-}
 
-.paper {
-  width: 794px;   /* A4 width */
-  height: 1123px; /* A4 height */
-  position: relative;
-  background: white;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-  overflow: hidden;
-}
+  overflow: auto;
 
-/* plantilla imagen */
-.bg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  padding: 30px;
 }
 
 /* =========================
-   CAMPOS SOBRE LA PLANTILLA
+   A4
 ========================= */
+
+.paper {
+  position: relative;
+
+  width: 794px;
+  min-width: 794px;
+
+  background: white;
+
+  box-shadow: 0 0 30px rgba(0,0,0,0.12);
+}
+
+.bg {
+  width: 100%;
+  display: block;
+}
+
+/* =========================
+   CAMPOS
+========================= */
+
 .field {
   position: absolute;
+
   cursor: move;
-  font-weight: bold;
-  color: black;
+
   user-select: none;
+
+  color: black;
+
+  font-weight: 500;
+
   white-space: nowrap;
 }
 
 /* =========================
-   HOVER EFECTO SUAVE
+   SCROLL BONITO
 ========================= */
-.field:hover {
-  outline: 1px dashed rgba(0, 0, 0, 0.3);
+
+.panel::-webkit-scrollbar {
+  width: 10px;
+}
+
+.panel::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.panel::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 20px;
+}
+
+.panel::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
 
 /* =========================
-   IMPRESIÓN (CRÍTICO)
+   PRINT
 ========================= */
+
 @media print {
+
   body {
-    margin: 0;
     background: white;
   }
 
@@ -130,19 +233,13 @@
     display: none !important;
   }
 
-  .app {
+  .paper-wrapper {
     padding: 0;
-    background: white;
+    overflow: visible;
   }
 
   .paper {
+    width: 210mm;
     box-shadow: none;
-    margin: 0;
   }
-}
-
-/* A4 real */
-@page {
-  size: A4;
-  margin: 0;
 }
